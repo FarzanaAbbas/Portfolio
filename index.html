@@ -1174,6 +1174,7 @@
       sequenceWebhook to start the follow-up email sequence (see email-sequence.md). */
 var FORM_CONFIG = {
   web3formsKey: '6db71124-71c7-426d-93e6-ac7c698d7034',
+  inbox: 'connectwithfarzaana@gmail.com',
   sequenceWebhook: ''
 };
 
@@ -1531,21 +1532,28 @@ var FORM_CONFIG = {
       if (!data.name) { setStatus('Please add your name.', 'err'); document.getElementById('f-name').focus(); return; }
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) { setStatus('Please enter a valid email so I can reply.', 'err'); document.getElementById('f-email').focus(); return; }
       if (data.message.length < 10) { setStatus('Tell me a little more about the project (a line or two).', 'err'); document.getElementById('f-msg').focus(); return; }
-      if (!FORM_CONFIG.web3formsKey || FORM_CONFIG.web3formsKey.indexOf('YOUR_') === 0) {
-        setStatus('The form is not connected yet. Please email connectwithfarzaana@gmail.com directly.', 'err'); return;
-      }
       btn.disabled = true; setStatus('Sending…');
-      var payload = Object.assign({ access_key: FORM_CONFIG.web3formsKey, subject: 'New project inquiry: ' + data.service + ' from ' + data.name, from_name: 'Portfolio inquiry', replyto: data.email }, data);
-      var jobs = [fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(payload) }).then(function (r) { return r.json(); })];
-      if (FORM_CONFIG.sequenceWebhook) {
-        jobs.push(fetch(FORM_CONFIG.sequenceWebhook, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.assign({ source: 'portfolio-service-form' }, data)) }).catch(function () {}));
+      var subject = 'New project inquiry: ' + data.service + ' from ' + data.name;
+      function json(r) { return r.json().catch(function () { return {}; }); }
+      // 1st choice: Web3Forms
+      function viaWeb3Forms() {
+        if (!FORM_CONFIG.web3formsKey || FORM_CONFIG.web3formsKey.indexOf('YOUR_') === 0) return Promise.resolve(false);
+        var payload = Object.assign({ access_key: FORM_CONFIG.web3formsKey, subject: subject, from_name: 'Portfolio inquiry', replyto: data.email }, data);
+        return fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(payload) })
+          .then(json).then(function (r) { return r && r.success === true; }).catch(function () { return false; });
       }
-      Promise.all(jobs).then(function (res) {
-        if (res[0] && res[0].success) {
-          form.reset(); setStatus('Thanks ' + data.name.split(' ')[0] + '! Your inquiry is in. Check your inbox; I will reply within one working day.', 'ok');
-        } else { throw new Error('send failed'); }
-      }).catch(function () {
-        setStatus('Could not send right now. Please email connectwithfarzaana@gmail.com directly.', 'err');
+      // backup: FormSubmit (works on any domain, no account; first message asks you to click "Activate" once)
+      function viaFormSubmit() {
+        var payload = Object.assign({ _subject: subject, _replyto: data.email, _template: 'table', _captcha: 'false' }, data);
+        return fetch('https://formsubmit.co/ajax/' + FORM_CONFIG.inbox, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(payload) })
+          .then(json).then(function (r) { return r && (r.success === true || r.success === 'true'); }).catch(function () { return false; });
+      }
+      if (FORM_CONFIG.sequenceWebhook) {
+        fetch(FORM_CONFIG.sequenceWebhook, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.assign({ source: 'portfolio-service-form' }, data)) }).catch(function () {});
+      }
+      viaWeb3Forms().then(function (ok) { return ok || viaFormSubmit(); }).then(function (ok) {
+        if (ok) { form.reset(); setStatus('Thanks ' + data.name.split(' ')[0] + '! Your inquiry is in. I will reply within one working day.', 'ok'); }
+        else setStatus('Could not send right now. Please email connectwithfarzaana@gmail.com directly.', 'err');
       }).then(function () { btn.disabled = false; });
     });
   })();
