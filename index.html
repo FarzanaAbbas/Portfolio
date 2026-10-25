@@ -361,6 +361,24 @@
   .m-crown b { font-family: var(--display); font-size: 1.1rem; letter-spacing: .3em; color: var(--ink); }
   .m-crown .ln { height: 5px; width: 40%; border-radius: 3px; background: rgba(255,255,255,.12); }
 
+  .m-drape { justify-content: center; align-items: center; background: radial-gradient(circle at 50% 30%, #2A1B24, #0F0D12 70%); }
+  .dphone { width: 40%; height: 112%; margin-top: 14%; border-radius: 22px; border: 3px solid #2A2530; background: #FAF6F2; padding: 14px 10px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 20px 50px rgba(0,0,0,.5); }
+  .dlogo { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 1.25rem; color: #141014; }
+  .dlogo i { color: var(--rose); font-style: normal; }
+  .dchips { display: flex; gap: 4px; flex-wrap: wrap; }
+  .dchips span { padding: 3px 7px; border-radius: 999px; background: #141014; color: #fff; font-size: .48rem; }
+  .dchips span + span { background: #EDE6E0; color: #141014; }
+  .dtiles { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; flex: 1; }
+  .dtiles i { border-radius: 10px; background: linear-gradient(160deg, #F2B8C6, #C83E5C); }
+  .dtiles i:nth-child(2) { background: linear-gradient(160deg, #B9C7E8, #3B4C7A); }
+  .dtiles i:nth-child(3) { background: linear-gradient(160deg, #F5DFA6, #C9A227); }
+  .dtiles i:nth-child(4) { background: linear-gradient(160deg, #BFE3D6, #2F5D50); }
+  .m-books { flex-direction: column; justify-content: flex-end; gap: 10px; padding: 18px 22px; background: radial-gradient(circle at 50% 10%, #4A3218, #17110C 70%); }
+  .m-books .lantern { position: absolute; left: 50%; top: 12%; width: 22px; height: 30px; margin-left: -11px; border-radius: 8px; background: #FFC86B; box-shadow: 0 0 40px 18px rgba(255,190,90,.45); }
+  .m-books .shelf { height: 34%; display: flex; align-items: flex-end; gap: 4px; padding: 0 6px; border-bottom: 6px solid #5A3B1E; }
+  .m-books .shelf i { flex: 1; height: var(--h); background: var(--c); border-radius: 2px 2px 0 0; box-shadow: inset -3px 0 0 rgba(0,0,0,.18); }
+  .m-books .bk-tag { position: absolute; left: 14px; top: 14px; padding: 6px 10px; border-radius: 8px; background: rgba(15,13,18,.85); font-family: var(--serif); font-style: italic; font-size: .85rem; color: #FFE2B0; }
+
   /* ---------- experience ---------- */
   .exp { position: relative; margin-top: clamp(44px, 6vw, 80px); }
   .exp-line { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: var(--line); transform: translateX(-50%); }
@@ -660,7 +678,7 @@
         <h2 class="title" data-title>Things I've <span class="serif grad-text">built</span></h2>
       </div>
       <div class="work-ctrl" data-rv="up">
-        <div class="work-count"><b id="workNow">01</b><span> / 09</span></div>
+        <div class="work-count"><b id="workNow">01</b><span> / 12</span></div>
         <button class="arrow" id="prevBtn" type="button" aria-label="Previous project" data-hover><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 5l-7 7 7 7"/></svg></button>
         <button class="arrow" id="nextBtn" type="button" aria-label="Next project" data-hover><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></button>
       </div>
@@ -668,6 +686,54 @@
     <div class="track-scroller" id="trackScroller" tabindex="0" aria-label="Projects, scroll sideways" data-lenis-prevent data-cursor="Drag">
       <div class="track" id="track">
 
+        <article class="pcard" data-tilt data-rv="right" data-rv-once>
+          <div class="pcard-in">
+            <div class="visual">
+              <img class="shot" data-local="screens/khoobi.jpg" alt="Khoobi app promo showing the home screen and product page" loading="lazy" decoding="async">
+              <div class="mock m-drape"><div class="dphone"><b class="dlogo">khoobi<i>.</i></b><div class="dtiles"><i></i><i></i><i></i><i></i></div></div></div>
+            </div>
+            <div class="pmeta">
+              <div class="row"><span class="mono">01 · Mobile app</span><span class="mono">Fashion</span></div>
+              <h3>Khoobi</h3>
+              <p>A boutique shopping app: search and filters, a wishlist, a bag with a free-delivery tracker, cash on delivery and live order status.</p>
+              <div class="tags"><span>E-commerce</span><span>App UI</span><a class="plink" href="screens/khoobi-reel.mp4" target="_blank" rel="noopener" data-hover>Watch reel ▶</a></div>
+            </div>
+          </div>
+        </article>
+        <article class="pcard" data-tilt data-rv="right" data-rv-once>
+          <div class="pcard-in">
+            <div class="visual">
+              <img class="shot" data-local="screens/lantern-leaf.jpg" data-site="https://lantern-and-leaf-3d-bookshop.vercel.app/" alt="Screenshot of the Lantern &amp; Leaf 3D bookshop" loading="lazy" decoding="async">
+              <div class="mock m-books">
+                <div class="lantern"></div>
+                <div class="shelf"><i style="--h:78%;--c:#8B3A3A"></i><i style="--h:92%;--c:#2F5D50"></i><i style="--h:70%;--c:#C9A227"></i><i style="--h:86%;--c:#3B4C7A"></i><i style="--h:64%;--c:#A0522D"></i><i style="--h:90%;--c:#5B3A6B"></i><i style="--h:74%;--c:#2E6E8E"></i><i style="--h:82%;--c:#7A5C2E"></i><i style="--h:68%;--c:#9C2F4B"></i><i style="--h:88%;--c:#3C6B3A"></i></div>
+                <div class="shelf"><i style="--h:84%;--c:#C9A227"></i><i style="--h:66%;--c:#3B4C7A"></i><i style="--h:90%;--c:#8B3A3A"></i><i style="--h:72%;--c:#2F5D50"></i><i style="--h:80%;--c:#5B3A6B"></i><i style="--h:94%;--c:#A0522D"></i><i style="--h:70%;--c:#2E6E8E"></i><i style="--h:86%;--c:#9C2F4B"></i><i style="--h:76%;--c:#3C6B3A"></i><i style="--h:62%;--c:#7A5C2E"></i></div>
+                <span class="bk-tag">Lantern &amp; Leaf</span>
+              </div>
+            </div>
+            <div class="pmeta">
+              <div class="row"><span class="mono">02 · 3D website</span><span class="mono">Vercel</span></div>
+              <h3>Lantern &amp; Leaf</h3>
+              <p>A walk-in 3D bookshop: step inside, wander the aisles, pull books off the shelves and fill your trolley.</p>
+              <div class="tags"><span>3D web</span><span>Interactive</span><a class="plink" href="https://lantern-and-leaf-3d-bookshop.vercel.app/" target="_blank" rel="noopener" data-hover>Visit site ↗</a></div>
+            </div>
+          </div>
+        </article>
+        <article class="pcard" data-tilt data-rv="right" data-rv-once>
+          <div class="pcard-in">
+            <div class="visual">
+              <img class="shot" data-local="screens/drape.jpg" alt="Drapé fashion app screens" loading="lazy" decoding="async">
+              <div class="bgglow" style="background: radial-gradient(circle at 50% 40%, #FF4F6E, transparent 60%)"></div>
+              <div class="mock m-drape"><div class="dphone"><b class="dlogo">Drapé</b><div class="dchips"><span>New in</span><span>Dresses</span><span>Coats</span></div><div class="dtiles"><i></i><i></i><i></i><i></i></div></div></div>
+            </div>
+            <div class="pmeta">
+              <div class="row"><span class="mono">03 · UI/UX case study</span><span class="mono">Behance</span></div>
+              <h3>Drapé</h3>
+              <p>A fashion shopping app designed end to end, from research and user flows to the final high-fidelity screens.</p>
+              <div class="tags"><span>UI/UX</span><span>Case study</span><a class="plink" href="https://www.behance.net/gallery/257326677/Drap-Fashion-Shopping-App-UIUX-Case-Study" target="_blank" rel="noopener" data-hover>View case study ↗</a></div>
+            </div>
+          </div>
+        </article>
         <article class="pcard" data-tilt data-rv="right" data-rv-once>
           <div class="pcard-in">
             <div class="visual">
@@ -683,7 +749,7 @@
               </div>
             </div>
             <div class="pmeta">
-              <div class="row"><span class="mono">01 · Web platform</span><span class="mono">UAE</span></div>
+              <div class="row"><span class="mono">04 · Web platform</span><span class="mono">UAE</span></div>
               <h3>Samaa Wallet</h3>
               <p>A kids' wellness and activity wallet: reward points, partner discounts, a digital card and a parent dashboard.</p>
               <div class="tags"><span>Rewards</span><span>Dashboard</span><a class="plink" href="https://samaawallet.lumicorex.com/" target="_blank" rel="noopener" data-hover>Visit site ↗</a></div>
@@ -703,7 +769,7 @@
               </div>
             </div>
             <div class="pmeta">
-              <div class="row"><span class="mono">02 · Platform</span><span class="mono">EdTech</span></div>
+              <div class="row"><span class="mono">05 · Platform</span><span class="mono">EdTech</span></div>
               <h3>SkillZep</h3>
               <p>India's 24/7 live learning platform for tech and creative skills, with online, offline and hybrid courses.</p>
               <div class="tags"><span>EdTech</span><span>Web app</span><a class="plink" href="https://skillzep.ai/" target="_blank" rel="noopener" data-hover>Visit site ↗</a></div>
@@ -720,7 +786,7 @@
               </div>
             </div>
             <div class="pmeta">
-              <div class="row"><span class="mono">03 · Website</span><span class="mono">Bengaluru</span></div>
+              <div class="row"><span class="mono">06 · Website</span><span class="mono">Bengaluru</span></div>
               <h3>TileWorld</h3>
               <p>Showroom website for tiles, sanitaryware and bath fittings in Bengaluru, with collections by category.</p>
               <div class="tags"><span>Catalogue</span><span>SEO</span><a class="plink" href="https://test.tileworld.in/" target="_blank" rel="noopener" data-hover>Visit site ↗</a></div>
@@ -739,7 +805,7 @@
               </div>
             </div>
             <div class="pmeta">
-              <div class="row"><span class="mono">04 · Website</span><span class="mono">Saudi Arabia</span></div>
+              <div class="row"><span class="mono">07 · Website</span><span class="mono">Saudi Arabia</span></div>
               <h3>Crown Gulf</h3>
               <p>Corporate website for a Saudi company in heavy equipment rental, workforce staffing and construction services.</p>
               <div class="tags"><span>Corporate</span><span>SEO</span><a class="plink" href="https://crowngulf.co/index.html" target="_blank" rel="noopener" data-hover>Visit site ↗</a></div>
@@ -762,7 +828,7 @@
               </div>
             </div>
             <div class="pmeta">
-              <div class="row"><span class="mono">05 · Website</span><span class="mono">Saudi Arabia</span></div>
+              <div class="row"><span class="mono">08 · Website</span><span class="mono">Saudi Arabia</span></div>
               <h3>Nice Time Contracting</h3>
               <p>Company website for a contracting business in Saudi Arabia, built responsive and search-friendly.</p>
               <div class="tags"><span>Corporate</span><span>SEO</span><a class="plink" href="https://nicetimeksa.com/" target="_blank" rel="noopener" data-hover>Visit site ↗</a></div>
@@ -787,7 +853,7 @@
               </div>
             </div>
             <div class="pmeta">
-              <div class="row"><span class="mono">06 · Mobile app</span><span class="mono">Saspro</span></div>
+              <div class="row"><span class="mono">09 · Mobile app</span><span class="mono">Saspro</span></div>
               <h3>CRM App</h3>
               <p>Cross-platform mobile CRM for on-the-go sales and support teams, with secure logic and real-time data tracking.</p>
               <div class="tags"><span>React Native</span><span>JavaScript</span></div>
@@ -815,7 +881,7 @@
               </div>
             </div>
             <div class="pmeta">
-              <div class="row"><span class="mono">07 · Saspro product</span><span class="mono">Web app</span></div>
+              <div class="row"><span class="mono">10 · Saspro product</span><span class="mono">Web app</span></div>
               <h3>SRMS: Smart Restaurant Management System</h3>
               <p>Full-stack restaurant platform for orders, KOT, billing, tables and inventory, built to handle real-time order flow.</p>
               <div class="tags"><span>MERN Stack</span><span>MySQL</span><span>POS</span></div>
@@ -837,7 +903,7 @@
               </div>
             </div>
             <div class="pmeta">
-              <div class="row"><span class="mono">08 · Student project</span><span class="mono">AI / ML</span></div>
+              <div class="row"><span class="mono">11 · Student project</span><span class="mono">AI / ML</span></div>
               <h3>Weapon &amp; Violence Detection</h3>
               <p>AI surveillance system that analyses video feeds to flag weapons and violent behaviour, with real-time alerts.</p>
               <div class="tags"><span>Python</span><span>Machine Learning</span><span>Computer Vision</span></div>
@@ -848,7 +914,7 @@
         <article class="pcard end" data-rv="right" data-rv-once>
           <div class="pcard-in">
             <div>
-              <span class="mono" style="color:#140F10">09 · And more</span>
+              <span class="mono" style="color:#140F10">12 · And more</span>
               <h3 style="margin-top:14px">More<br>builds</h3>
               <ul>
                 <li><span>Client websites</span><span>MERN · PHP</span></li>
@@ -1436,7 +1502,7 @@ var FORM_CONFIG = {
         img.classList.add('ok');
       });
       img.addEventListener('error', function () {
-        if (stage === 0) { stage = 1; img.src = snap(site); }
+        if (stage === 0 && site) { stage = 1; img.src = snap(site); }
       });
       img.src = img.getAttribute('data-local');
     });
@@ -1495,7 +1561,7 @@ var FORM_CONFIG = {
       'Previous: Full Stack Developer at Zephyr Technologies and Solutions, Mangalore (Feb 2024 - Dec 2025): trained interns and junior developers on MERN; built web apps with MERN, MEAN, Python Flask and PHP; led client meetings and requirement gathering, improving development efficiency by 40%. Full Stack Web Development training at Zephyr (Sep 2023 - Feb 2024).',
       'Total experience: about 2.7 years.',
       'Awards: Best Employee of the Month (October 2024) and Star Performer of the Month (July 2025).',
-      'Projects: Samaa Wallet (a wellness and activity wallet for children in the UAE with reward points, partner discounts and a parent dashboard, samaawallet.lumicorex.com); SkillZep (a 24/7 live learning platform in India for tech and creative skills, skillzep.ai); TileWorld (Bengaluru showroom website for tiles, sanitaryware and bath fittings, tileworld.in); Crown Gulf (corporate website for a Saudi heavy equipment rental, staffing and construction company, crowngulf.co); Nice Time Contracting (company website for a contracting business in Saudi Arabia, nicetimeksa.com); CRM App for Saspro (React Native, real-time data tracking); SRMS Smart Restaurant Management System, a Saspro product (MERN stack, MySQL: orders, KOT, billing, tables, inventory); Weapon & Violence Detection, a student engineering project (Python, machine learning, computer vision). Also client websites for construction and software companies and wedding invitation designs sold on Etsy and Gumroad.',
+      'Projects: Khoobi (a boutique fashion shopping app with search and filters, wishlist, bag with free-delivery tracker, cash on delivery and live order status); Lantern & Leaf (a walk-in 3D bookshop website where visitors browse aisles and pick books off shelves, lantern-and-leaf-3d-bookshop.vercel.app); Drapé (a fashion shopping app UI/UX case study on Behance); Samaa Wallet (a wellness and activity wallet for children in the UAE with reward points, partner discounts and a parent dashboard, samaawallet.lumicorex.com); SkillZep (a 24/7 live learning platform in India for tech and creative skills, skillzep.ai); TileWorld (Bengaluru showroom website for tiles, sanitaryware and bath fittings, tileworld.in); Crown Gulf (corporate website for a Saudi heavy equipment rental, staffing and construction company, crowngulf.co); Nice Time Contracting (company website for a contracting business in Saudi Arabia, nicetimeksa.com); CRM App for Saspro (React Native, real-time data tracking); SRMS Smart Restaurant Management System, a Saspro product (MERN stack, MySQL: orders, KOT, billing, tables, inventory); Weapon & Violence Detection, a student engineering project (Python, machine learning, computer vision). Also client websites for construction and software companies and wedding invitation designs sold on Etsy and Gumroad.',
       'Skills: React, React Native, Next.js, JavaScript, HTML5, CSS3, WordPress, Node.js, Express, Python, Django, PHP, Java, MySQL, MongoDB, REST APIs, Git/GitHub, system design, Agile, MEAN stack. Digital marketing: SEO, Google Analytics, Google Search Console, Google Ads, Meta Ads, Pinterest marketing, email marketing, Google Business Profile, keyword research.',
       'Education: MBA in AI & Marketing, Jain University Online, Aug 2026 - present; BCA, St. Philomena College Puttur, 2020-2023, CGPA 8; PUC Science (PCMB), NMPUC, 2018-2020, 66%; 10th standard, Saverapura English Medium High School, 81%. Certifications: Full Stack Web Development (Zephyr 2023), MERN Stack Development (Zephyr 2024), SEO (Udemy 2025), React Native (Udemy 2025).',
       'Services: websites, web apps & dashboards, React Native mobile apps, UI & invitation design, SEO & digital marketing. Open to full-time roles and freelance projects.',
@@ -1511,7 +1577,7 @@ var FORM_CONFIG = {
       { k: ['education', 'study', 'degree', 'bca', 'mba', 'college', 'school', '10th', 'sslc', 'puc', 'cgpa', 'qualification'], a: "• MBA in AI & Marketing, Jain University, Aug 2026 – present\n• BCA, St. Philomena College, Puttur, 2020–2023, CGPA 8\n• PUC Science (PCMB), NMPUC, 2018–2020, 66%\n• 10th Standard, Saverapura English Medium High School, 81%\nCertified in Full Stack Web Development, MERN Stack, SEO and React Native." },
       { k: ['experience', 'work history', 'saspro', 'zephyr', 'company', 'career', 'years', 'role', 'currently'], a: "About 2.7 years of experience:\n• Software Developer at Saspro Technologies (Jan 2026 – now): full-stack MERN + MySQL platforms, React Native apps, a CRM app and a restaurant management system.\n• Full Stack Developer at Zephyr Technologies (Feb 2024 – Dec 2025): client web apps, intern training, and client requirement meetings that improved delivery efficiency by 40%." },
       { k: ['skill', 'stack', 'tech', 'language', 'framework', 'react', 'php', 'sql', 'node', 'python', 'tools'], a: "Development: React, React Native, Next.js, JavaScript, Node.js, Express, PHP, Python, Django, Java, MySQL, MongoDB, REST APIs, Git.\nMarketing: SEO, Google Analytics, Search Console, Google Ads, Meta Ads, Pinterest, email marketing, Google Business Profile and keyword research." },
-      { k: ['project', 'built', 'build', 'portfolio', 'pos', 'crm', 'restaurant', 'detection', 'invitation', 'app', 'website'], a: "Projects:\n• Samaa Wallet, a kids' wellness & rewards wallet (UAE)\n• SkillZep, a 24/7 live learning platform\n• TileWorld, Crown Gulf and Nice Time Contracting websites\n• CRM App (React Native) for Saspro\n• SRMS, Saspro's Smart Restaurant Management System (MERN + MySQL)\n• Weapon & Violence Detection, a student AI project\nScroll to \"Things I've built\" to see them." },
+      { k: ['project', 'built', 'build', 'portfolio', 'pos', 'crm', 'restaurant', 'detection', 'invitation', 'app', 'website'], a: "Projects:\n• Khoobi, a boutique fashion shopping app\n• Lantern & Leaf, a walk-in 3D bookshop website\n• Drapé, a fashion app UI/UX case study (Behance)\n• Samaa Wallet, a kids' wellness & rewards wallet (UAE)\n• SkillZep, a 24/7 live learning platform\n• TileWorld, Crown Gulf and Nice Time Contracting websites\n• CRM App (React Native) for Saspro\n• SRMS, Saspro's Smart Restaurant Management System (MERN + MySQL)\n• Weapon & Violence Detection, a student AI project\nScroll to \"Things I've built\" to see them." },
       { k: ['service', 'offer', 'what can she do', 'help with'], a: "She offers websites, web apps & dashboards, React Native mobile apps, UI & invitation design, and SEO & digital marketing." },
       { k: ['contact', 'email', 'reach', 'linkedin', 'github', 'phone', 'call', 'resume', 'cv'], a: "Email: connectwithfarzaana@gmail.com\nLinkedIn: linkedin.com/in/khadeejath-farzana-a-350a5228b\nGitHub: github.com/FarzanaAbbas\nOr use the \"Start a project\" form on this page." },
       { k: ['where', 'location', 'based', 'city', 'mangalore'], a: "Farzana is based in Mangalore, Karnataka, India, and works with clients remotely too." },
